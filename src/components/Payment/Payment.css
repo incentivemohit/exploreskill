@@ -1,0 +1,26 @@
+.payment-body{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.payment-left-section{
+   width: 50rem;
+   padding: 15px;
+    background-color: antiquewhite;
+}
+.payment-right-section{
+   width: 32rem;
+    background-color: antiquewhite;
+}
+.payment-card{
+    width: 30rem;
+    margin: 0 auto;
+   background-image: url("../images/register-background.jpg");
+}
+
+.shipping-card{
+    background-image: url("../images/register-background.jpg");
+    font-size: 18px;
+    font-weight: bold;
+}

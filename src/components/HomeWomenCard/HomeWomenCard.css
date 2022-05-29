@@ -1,0 +1,13 @@
+.home-women-card{
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    background-image: url("../images/register-background.jpg");
+    background-size: cover;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: rgb(87, 84, 79);
+    border-top-right-radius: 60px;
+    border-bottom-left-radius: 60px;
+
+}

@@ -1,0 +1,14 @@
+.women-card{
+    background-color: aquamarine;
+    background-image: url("../images/wc.jpg");
+    width: 500px;
+    height: 650px;
+    border-top-left-radius: 180px;
+    border-bottom-right-radius: 150px;
+    padding: 10px;
+    margin-top: 20px;
+}
+.women-name{
+    font-size: 30px;
+  font-family: 'Lobster', cursive;;
+}

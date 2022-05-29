@@ -1,0 +1,25 @@
+
+.product-info{
+    border-bottom-left-radius: 90px;
+    border-bottom-right-radius: 90px;
+    background-color: burlywood;
+    background-image: url("../images/pbi.jpg");
+    padding-bottom: 5px;
+}
+.product-card-title{
+    font-family: 'Lobster', cursive;
+font-family: 'Smooch', cursive;
+font-size: 3rem;
+color: white;
+}
+
+.product-seller-name{
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.8rem;
+    color: black;
+}
+
+.buy-button{
+    width: 10rem;
+    margin-top: 5px;
+}

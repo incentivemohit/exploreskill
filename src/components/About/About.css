@@ -1,0 +1,14 @@
+.about-body{
+    background-image: url('../images/img7.jpg');
+    background-size: cover;
+    height: 89vh;
+    position: relative;
+}
+
+.about{
+   position: absolute;
+    top: 90px;
+    left: 25%;
+    width: 50%;
+    height: 20rem;
+}

@@ -1,0 +1,42 @@
+.topBar{
+    background-color: rgb(242, 146, 162);
+    color: rgb(59, 57, 200);
+    display: flex;
+    justify-content: space-between;
+   
+}
+
+.topLeft-ul{
+list-style-type:none;
+display: flex;
+font-size: 20px;
+font-weight: bold;
+font-family: 'Lobster', cursive;
+}
+
+.topBar-center{
+    display: flex;
+    font-size: 25px;
+    margin: 0 auto;
+   font-family:'Smooch', cursive;
+   padding-top: 5px;
+}
+.site-name{
+    margin-top: 5px;
+}
+.topRight-ul{
+    list-style-type:none;
+    display: flex;
+    padding-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Lobster', cursive;
+
+}
+.topLeft-links{
+    padding: 10px;
+}
+.topRight-links{
+   margin-right: 20px; 
+}
+
