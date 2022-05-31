@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../Header/Header";
+import LoginHeader from "../Header/LoginHeader";
 import img from "../images/donate.jpg";
 
 function Donate() {
@@ -13,8 +13,9 @@ function Donate() {
           height: "100vh",
         }}
       >
+        <LoginHeader />
         <div className="container-fluid bg-dark text-white text-center">
-          <h2 className=" py-3 ">Donate us</h2>
+          <h2 className=" py-1 ">Donate us</h2>
         </div>
         <div
           className="donate-card card bg-warning  "

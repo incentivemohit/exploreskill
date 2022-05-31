@@ -16,7 +16,7 @@ function Login() {
     try {
       const member = await login(email, password);
       if (member) {
-        navigate("/payment");
+        navigate("/dashboard");
       } else {
         navigate("/register");
       }

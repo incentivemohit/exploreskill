@@ -3,8 +3,8 @@ import "./SuperWomen.css";
 import Header from "../Header/Header";
 import lady1 from "../images/1.png";
 import lady2 from "../images/2.jpg";
-import lady3 from "../images/w3.jpg";
-import lady4 from "../images/w4.jpg";
+import lady3 from "../images/womenImages/w3.jpg";
+import lady4 from "../images/womenImages/w4.jpg";
 import WomenCard from "../Women/WomenCard";
 import Footer from "../Footer/Footer";
 

@@ -1,24 +1,24 @@
 import React from "react";
-import Content from "../Content/Content";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
+
 import lady1 from "../images/womenImages/w4.jpg";
 import lady2 from "../images/womenImages/w3.jpg";
 import lady3 from "../images/img4.jpg";
 import lady4 from "../images/img5.jpg";
 import lady5 from "../images/womenImages/w1.jpg";
 
-import HomeWomenCard from "../HomeWomenCard/HomeWomenCard";
 import "./Home.css";
-import FooterCarousel from "./FooterCarousel";
+import LoginHeader from "../Header/LoginHeader";
+import Content from "../Content/Content";
+import HomeWomenCard from "../HomeWomenCard/HomeWomenCard";
 import HomeCarousel from "./HomeCarousel";
+import Footer from "../Footer/Footer";
 
-function Home() {
+function Dash() {
   return (
     <>
       <div className="home">
         <div className="header">
-          <Header />
+          <LoginHeader />
         </div>
         <div className="content">
           <Content />
@@ -56,7 +56,7 @@ function Home() {
             para2="Support of our customers have encouraged us to work on this mission to make Pehchaan an identity for all those ladies who have talents but havent got the platform to showcase it.It will be our heartiest request to share this website so that we can reach all women over india .
             phone: 9998374939"
           />
-          <FooterCarousel />
+
           <HomeWomenCard
             image={lady4}
             title="Apurva Mittal"
@@ -82,4 +82,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Dash;

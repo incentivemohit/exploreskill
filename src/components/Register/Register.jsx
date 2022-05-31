@@ -90,7 +90,7 @@ function Register() {
             <div className="register-further-info">
               <p>
                 <a
-                  href="/login"
+                  href="/"
                   style={{
                     fontSize: "18px",
                     color: "white",

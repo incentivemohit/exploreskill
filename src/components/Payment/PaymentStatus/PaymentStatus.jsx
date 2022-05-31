@@ -1,4 +1,5 @@
 import React from "react";
+import LoginHeader from "../../Header/LoginHeader";
 import tick from "../../images/successTick.jpg";
 import "./PaymentStatus.css";
 
@@ -6,8 +7,9 @@ function PaymentStatus() {
   return (
     <>
       <div className="payment-status-body text-center">
-        <div className="container-fluid bg-danger  p-4 text-white">
-          <h3 className="text-center">Payment Status</h3>
+        <LoginHeader />
+        <div className="container-fluid bg-danger p-1 text-white">
+          <h4 className="text-center">Payment Status</h4>
         </div>
 
         <div className="payment-status">

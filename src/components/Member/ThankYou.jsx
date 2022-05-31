@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "../Header/Header";
+import LoginHeader from "../Header/LoginHeader";
 import ty from "../images/thank.jpg";
 
 function ThankYou() {
   return (
     <>
-      <Header />
+      <LoginHeader />
       <div
         className="description text-center "
         style={{

@@ -13,7 +13,7 @@ import Member from "./components/Member/Member";
 import ThankYou from "./components/Member/ThankYou";
 import Donate from "./components/Donate/Donate";
 import { UserContextProvider } from "./components/Context/UserAuthContext";
-import StripePayment from "./Stripe/StripePayment";
+import Dash from "./components/Home/Dash";
 
 function App() {
   return (
@@ -31,7 +31,8 @@ function App() {
             <Route path="/payment" element={<Payment />} />
             <Route path="/paymentstatus" element={<PaymentStatus />} />
             <Route path="/thankyou" element={<ThankYou />} />
-            <Route path="/dashboard" element={<Home />} />
+            <Route path="/dashboard" element={<Dash />} />
+            <Route path="/" element={<Home />} />
           </Routes>
         </Router>
       </UserContextProvider>
