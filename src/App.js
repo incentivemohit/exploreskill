@@ -14,6 +14,11 @@ import ThankYou from "./components/Member/ThankYou";
 import Donate from "./components/Donate/Donate";
 import { UserContextProvider } from "./components/Context/UserAuthContext";
 import Dash from "./components/Home/Dash";
+import Admin from "./components/Admin/Admin";
+import NewPost from "./components/NewPost/NewPost";
+import AdminPanelPost from "./components/AdminPanelPost/AdminPanelPost";
+import Feedback from "react-bootstrap/esm/Feedback";
+import DonateStatus from "./components/Donate/DonateStatus";
 
 function App() {
   return (
@@ -21,6 +26,11 @@ function App() {
       <UserContextProvider>
         <Router>
           <Routes>
+            {/* <Route path="/feedback" element={<Feedback />} />
+            <Route path="/adminpanel" element={<AdminPanelPost />} />
+            <Route path="/newpost" element={<NewPost />} />
+            <Route path="/admin" element={<Admin />} /> */}
+            <Route path="/donatestatus" element={<DonateStatus />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/donate" element={<Donate />} />

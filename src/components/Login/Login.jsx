@@ -8,7 +8,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { login } = useContext(UserContext);
+  const { login, forgetPassword } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -25,10 +25,10 @@ function Login() {
     }
   };
 
-  // const forgetPasswordHandler = (event) => {
-  //   const email = event.target.email;
-  //   if (email) forgetPassword(email).then(() => (event.target.email = ""));
-  // };
+  const forgetPasswordHandler = (event) => {
+    const email = event.target.email;
+    if (email) forgetPassword(email).then(() => (event.target.email = ""));
+  };
 
   return (
     <div className="Login-form-background">
@@ -49,7 +49,19 @@ function Login() {
         </div>
 
         <div class="form-group">
-          <label className="label-title">Password</label>
+          <div className="pass" style={{ display: "flex" }}>
+            <div className="pass1">
+              <label className="label-title">Password</label>
+            </div>
+            <div className="pass2">
+              <h6 className="text-white" style={{ marginLeft: "330px" }}>
+                <a href="" onClick={forgetPasswordHandler}>
+                  forget Password?
+                </a>
+              </h6>
+            </div>
+          </div>
+
           <input
             type="password"
             class="form-control"

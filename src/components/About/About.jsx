@@ -1,9 +1,9 @@
 import React from "react";
 import Header from "../Header/Header";
 import "./About.css";
-import mk from "../images/developlers/mkk.jpg";
-import shilpa from "../images/developlers/shilpa.jpg";
-import sakshi from "../images/developlers/sakshi.jpeg";
+import mk from "../images/developers/mkk.jpg";
+import shilpa from "../images/developers/shilpa.jpg";
+import sakshi from "../images/developers/sakshi.jpeg";
 
 function About() {
   return (
