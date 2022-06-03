@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./AdminPanelSidebar.css";
 import { Link } from "react-router-dom";
-export default function AdminPanelSidebar(email) {
+import { UserContext } from "../Context/UserAuthContext";
+import { useNavigate } from "react-router-dom";
+
+export default function AdminPanelSidebar() {
+  const { logOut } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleLogOut = async (e) => {
+    e.preventDefault();
+
+    try {
+      await logOut();
+      navigate("/");
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
   return (
     <>
       <div
@@ -24,32 +41,51 @@ export default function AdminPanelSidebar(email) {
               aria-current="page"
             >
               <i class="fa fa-home"></i>
-              <span class="ms-2"> Latest Posts</span>
+              <span class="ms-2">
+                <button className="bg-dark text-white btn-outline-warning">
+                  Latest Posts
+                </button>
+              </span>
             </Link>
           </li>
           <li>
             <Link to="/newpost" class="nav-link text-white">
               <i class="fa fa-edit"></i>
-              <span class="ms-2"> New Post</span>
+              <span class="ms-2">
+                <button className="bg-dark text-white btn-outline-warning">
+                  New Post
+                </button>
+              </span>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/feedback" class="nav-link text-white">
               <i class="fa fa-comments-o"></i>
               <span class="ms-2"> FeebBack</span>
             </Link>
-          </li>
+          </li> */}
 
           <li>
             <Link to="/dashboard" class="nav-link text-white">
               <i class="fa fa-eye"></i>
-              <span class="ms-2"> View Blog</span>
+              <span class="ms-2">
+                <button className="bg-dark text-white btn-outline-warning">
+                  View Site
+                </button>
+              </span>
             </Link>
           </li>
           <li>
             <Link to="/login" class="nav-link text-white">
               <i class="fa fa-sign-out"></i>
-              <span class="ms-2"> Logout</span>
+              <span class="ms-2">
+                <button
+                  className="bg-dark text-white btn-outline-warning"
+                  onClick={handleLogOut}
+                >
+                  LogOut
+                </button>
+              </span>
             </Link>
           </li>
         </ul>

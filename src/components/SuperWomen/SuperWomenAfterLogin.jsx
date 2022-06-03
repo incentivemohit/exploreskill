@@ -1,31 +1,18 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./SuperWomen.css";
-import Header from "../Header/Header";
 import lady1 from "../images/1.png";
 import lady2 from "../images/2.jpg";
 import lady3 from "../images/womenImages/w3.jpg";
 import lady4 from "../images/womenImages/w4.jpg";
 import WomenCard from "../Women/WomenCard";
 import Footer from "../Footer/Footer";
-import { UserContext } from "../Context/UserAuthContext";
-import { useNavigate } from "react-router-dom";
+import LoginHeader from "../Header/LoginHeader";
 
-function SuperWomen() {
-  const { user } = useContext(UserContext);
-  const navigate = useNavigate();
-
-  const CreateMember = () => {
-    if (user) {
-      navigate("/dashboard/membership");
-    } else {
-      navigate("/login");
-    }
-  };
+function SuperWomenAfterLogin() {
   return (
     <>
       <div className="superwomen">
-        <Header />
-
+        <LoginHeader />
         <div className="top-heading">
           <div className="top-left">
             <h2>
@@ -33,9 +20,11 @@ function SuperWomen() {
             </h2>
           </div>
           <div className="top-right">
-            <button className="btn btn-warning" onClick={CreateMember}>
-              Be a part of ExploreSkills
-            </button>
+            <a href="/dashboard/membership">
+              <button className="btn btn-warning ">
+                Be a part of ExploreSkills
+              </button>
+            </a>
           </div>
         </div>
 
@@ -101,4 +90,4 @@ function SuperWomen() {
   );
 }
 
-export default SuperWomen;
+export default SuperWomenAfterLogin;

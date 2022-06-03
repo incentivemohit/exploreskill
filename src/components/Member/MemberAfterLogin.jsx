@@ -1,12 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "./Member.css";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import LoginHeader from "../Header/LoginHeader";
-import { UserContext } from "../Context/UserAuthContext";
 
-function Member() {
+function MemberAfterLogin() {
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
   const [email, setEmail] = useState("");
@@ -14,8 +12,6 @@ function Member() {
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
-  const { user } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,13 +35,7 @@ function Member() {
       ) {
         await axios.post("/member", memberData).then((res) => {
           console.log(res.data);
-
-          if (user) {
-            navigate("/dashboard/thankyou");
-          } else {
-            navigate("/login");
-          }
-
+          navigate("/dashboard/thankyou");
           setTimeout(() => {
             alert("Registered Successfully");
           }, 1000);
@@ -68,7 +58,7 @@ function Member() {
           {error}
         </Alert>
       )}
-      <LoginHeader />
+      {/* <Header /> */}
       <div className="member-body">
         <h3 className="mx-5 text-white py-3 ">
           Fill this to be a part of ExploreSkills
@@ -167,4 +157,4 @@ function Member() {
   );
 }
 
-export default Member;
+export default MemberAfterLogin;

@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import dashboardHeader from "../Header/LoginHeader";
 import { Link, useParams } from "react-router-dom";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -18,6 +18,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import AdminPanelPost from "../AdminPanelPost/AdminPanelPost";
 import AdminPanelSidebar from "../AdminPanelSidebar/AdminPanelSidebar";
 import "./AdminPanel.css";
+import LoginHeader from "../Header/LoginHeader";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -81,71 +82,73 @@ export default function AdminPanel() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: "none" }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <div className="admin" style={{ display: "flex" }}>
-            <div className="admin-title">
-              <Typography variant="h6" noWrap component="div">
-                ExploreSkills
-              </Typography>
-            </div>
-            <div className="adminpanel-useremail">
-              <Typography variant="h6" noWrap component="div">
-                mkjackson@gmail.com
-              </Typography>
-            </div>
-            <div className="admin-logout">
-              <Typography variant="h6" noWrap component="div">
-                <Link to="/login">
-                  <button className="btn btn-warning ">Logout</button>
-                </Link>
-              </Typography>
-            </div>
-          </div>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
+    <>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
 
-        <AdminPanelSidebar email={id} />
-      </Drawer>
-      <Main open={open}>
-        <DrawerHeader />
-        <Typography paragraph>
-          <AdminPanelPost />
-        </Typography>
-      </Main>
-    </Box>
+        <AppBar position="fixed" open={open}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{ mr: 2, ...(open && { display: "none" }) }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <div className="admin" style={{ display: "flex" }}>
+              <div className="admin-title">
+                <Typography variant="h6" noWrap component="div">
+                  <button
+                    className="bg-dark text-white btn-outline-warning"
+                    style={{ width: "200px" }}
+                  >
+                    Admin Panel
+                  </button>
+                </Typography>
+              </div>
+
+              <div className="adminpanel-useremail">
+                <Typography variant="h6" noWrap component="div">
+                  mkjackson@gmail.com
+                </Typography>
+              </div>
+            </div>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              boxSizing: "border-box",
+            },
+          }}
+          variant="persistent"
+          anchor="left"
+          open={open}
+        >
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "ltr" ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </DrawerHeader>
+
+          <AdminPanelSidebar email={id} />
+        </Drawer>
+        <Main open={open}>
+          <DrawerHeader />
+          <Typography paragraph>
+            <AdminPanelPost />
+          </Typography>
+        </Main>
+      </Box>
+    </>
   );
 }

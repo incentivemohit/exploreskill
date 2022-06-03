@@ -1,16 +1,14 @@
 import React from "react";
-import Header from "../Header/Header";
 import "./About.css";
 import mk from "../images/developers/mkk.jpg";
 import shilpa from "../images/developers/shilpa.jpg";
 import sakshi from "../images/developers/sakshi.jpeg";
-import Navbar from "../Navbar/Navbar";
+import LoginHeader from "../Header/LoginHeader";
 
-function About() {
+function AboutAfterLogin() {
   return (
     <>
-      <Header />
-
+      <LoginHeader />
       <div className="about-body  ">
         <div className="about card w-75 p-3">
           <p className="text-center h2 bg-dark text-white">About us</p>
@@ -73,4 +71,4 @@ function About() {
   );
 }
 
-export default About;
+export default AboutAfterLogin;

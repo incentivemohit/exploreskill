@@ -1,14 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./Header.css";
 import img1 from "../images/aurat.png";
 import { UserContext } from "../Context/UserAuthContext";
-import { async } from "@firebase/util";
-import { Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function LoginHeader() {
   const { logOut } = useContext(UserContext);
   const navigate = useNavigate();
+
   const handleLogOut = async (e) => {
     e.preventDefault();
 
@@ -26,22 +25,31 @@ function LoginHeader() {
         <div className="topBar-left ">
           <ul className="topLeft-ul ">
             <li className="topLeft-links">
-              <a href="/" className="text-decoration-none">
+              <a href="/dashboard" className="text-decoration-none text-white">
                 Home
               </a>
             </li>
             <li className="topLeft-links">
-              <a href="/products" className="text-decoration-none">
-                BuyNow
+              <a
+                href="/dashboard/products"
+                className="text-decoration-none text-white"
+              >
+                Products
               </a>
             </li>
             <li className="topLeft-links">
-              <a href="/superwomen" className="text-decoration-none">
+              <a
+                href="/dashboard/superwomen"
+                className="text-decoration-none text-white"
+              >
                 Super Women
               </a>
             </li>
             <li className="topLeft-links">
-              <a href="/about" className="text-decoration-none">
+              <a
+                href="/dashboard/about"
+                className="text-decoration-none text-white"
+              >
                 About
               </a>
             </li>
@@ -63,7 +71,7 @@ function LoginHeader() {
             </a>
           </div>
           <div className="site-name">
-            <a href="/" className="text-decoration-none ">
+            <a href="/dashboard" className="text-decoration-none text-white ">
               ExploreSkills
             </a>
           </div>
@@ -72,8 +80,11 @@ function LoginHeader() {
         <div className="topRight ">
           <ul className="topRight-ul">
             <li className="topRight-links">
-              <a href="/donate">
-                <button className="btn btn-info">Donate</button>
+              <a
+                href="/dashboard/donate"
+                className="text-decoration-none text-white "
+              >
+                <button className="btn btn-info text-white">Donate</button>
               </a>
             </li>
             <li className="topRight-links">

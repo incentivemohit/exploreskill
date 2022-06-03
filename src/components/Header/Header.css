@@ -1,9 +1,7 @@
 .topBar{
-    background-color: rgb(242, 146, 162);
-    color: rgb(59, 57, 200);
-    display: flex;
-    justify-content: space-between;
-   
+    background-color: rgb(229, 60, 88);
+   /* background-color: rgb(255, 255, 255); */
+    display: flex; 
 }
 
 .topLeft-ul{
@@ -34,9 +32,12 @@ font-family: 'Lobster', cursive;
 
 }
 .topLeft-links{
-    padding: 10px;
+    padding: 5px;
+margin-top: 10px;   
 }
 .topRight-links{
    margin-right: 20px; 
 }
+
+
 

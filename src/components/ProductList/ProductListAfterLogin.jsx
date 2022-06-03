@@ -1,6 +1,5 @@
 import React from "react";
 import "./ProductList.css";
-import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import ProductCard from "../ProductCard/ProductCard";
 import HomeCarousel from "../Home/HomeCarousel";
@@ -19,11 +18,12 @@ import pr12 from "../images/products/pro12.jpg";
 import pr13 from "../images/products/pro13.jpg";
 import pr14 from "../images/products/pro14.jpg";
 import pr15 from "../images/products/pro15.jpeg";
+import LoginHeader from "../Header/LoginHeader";
 
-function ProductList() {
+function ProductListAfterLogin() {
   return (
     <>
-      <Header />
+      <LoginHeader />
       <div className="Products ">
         <h2 className="text-center my-2 ">Our Products</h2>
         <div className="allProducts mx-4">
@@ -163,4 +163,4 @@ function ProductList() {
   );
 }
 
-export default ProductList;
+export default ProductListAfterLogin;

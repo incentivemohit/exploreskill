@@ -4,7 +4,7 @@ import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ProductList from "./components/ProductList/ProductList";
+import ProductList from "./components/ProductList/ProductListBeforeLogin";
 import About from "./components/About/About";
 import SuperWomen from "./components/SuperWomen/SuperWomen";
 import Payment from "./components/Payment/Payment";
@@ -19,6 +19,12 @@ import NewPost from "./components/NewPost/NewPost";
 import AdminPanelPost from "./components/AdminPanelPost/AdminPanelPost";
 import Feedback from "react-bootstrap/esm/Feedback";
 import DonateStatus from "./components/Donate/DonateStatus";
+import AdminPanel from "./components/AdminPanel/AdminPanel";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import ProductListBeforeLogin from "./components/ProductList/ProductListBeforeLogin";
+import ProductListAfterLogin from "./components/ProductList/ProductListAfterLogin";
+import AboutAfterLogin from "./components/About/AboutAfterLogin";
+import SuperWomenAfterLogin from "./components/SuperWomen/SuperWomenAfterLogin";
 
 function App() {
   return (
@@ -26,22 +32,102 @@ function App() {
       <UserContextProvider>
         <Router>
           <Routes>
-            {/* <Route path="/feedback" element={<Feedback />} />
-            <Route path="/adminpanel" element={<AdminPanelPost />} />
+            <Route path="/feedback" element={<Feedback />} />
+            <Route path="/adminpanelpost" element={<AdminPanelPost />} />
+            <Route path="/adminpanel" element={<AdminPanel />} />
             <Route path="/newpost" element={<NewPost />} />
-            <Route path="/admin" element={<Admin />} /> */}
-            <Route path="/donatestatus" element={<DonateStatus />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route
+              path="/donatestatus"
+              element={
+                <ProtectedRoutes>
+                  <DonateStatus />
+                </ProtectedRoutes>
+              }
+            />
+
+            <Route
+              path="/dashboard/donate"
+              element={
+                <ProtectedRoutes>
+                  <Donate />
+                </ProtectedRoutes>
+              }
+            />
+
+            <Route
+              path="/dashboard/thankyou"
+              element={
+                <ProtectedRoutes>
+                  <ThankYou />
+                </ProtectedRoutes>
+              }
+            />
+
+            <Route
+              path="/dashboard/membership"
+              element={
+                <ProtectedRoutes>
+                  <Member />
+                </ProtectedRoutes>
+              }
+            />
+
+            <Route
+              path="/dashboard/payment"
+              element={
+                <ProtectedRoutes>
+                  <Payment />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/dashboard/paymentstatus"
+              element={
+                <ProtectedRoutes>
+                  <PaymentStatus />
+                </ProtectedRoutes>
+              }
+            />
+
+            <Route
+              path="/dashboard/about"
+              element={
+                <ProtectedRoutes>
+                  <AboutAfterLogin />
+                </ProtectedRoutes>
+              }
+            />
+
+            <Route
+              path="/dashboard/superwomen"
+              element={<SuperWomenAfterLogin />}
+            />
+
+            <Route
+              path="/dashboard/products"
+              element={
+                <ProtectedRoutes>
+                  <ProductListAfterLogin />
+                </ProtectedRoutes>
+              }
+            />
+
+            <Route
+              exact
+              path="/dashboard"
+              element={
+                <ProtectedRoutes>
+                  <Dash />
+                </ProtectedRoutes>
+              }
+            />
+
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/donate" element={<Donate />} />
-            <Route path="/products" element={<ProductList />} />
+            <Route path="/products" element={<ProductListBeforeLogin />} />
             <Route path="/superwomen" element={<SuperWomen />} />
-            <Route path="/membership" element={<Member />} />
             <Route path="/about" element={<About />} />
-            <Route path="/payment" element={<Payment />} />
-            <Route path="/paymentstatus" element={<PaymentStatus />} />
-            <Route path="/thankyou" element={<ThankYou />} />
-            <Route path="/dashboard" element={<Dash />} />
             <Route path="/" element={<Home />} />
           </Routes>
         </Router>

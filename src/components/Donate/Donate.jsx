@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import LoginHeader from "../Header/LoginHeader";
 import img from "../images/donate.jpg";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../Context/UserAuthContext";
 
 function Donate() {
   const [cardOwner, setCardOwner] = useState("");
@@ -11,8 +12,19 @@ function Donate() {
   const [day, setDay] = useState("");
   const [year, setYear] = useState("");
   const [cvv, setCVV] = useState("");
+  const [money, setMoney] = useState("");
   const [error, setError] = useState("");
+
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
+
+  const DonateStatus = () => {
+    if (user) {
+      navigate("/donatestatus");
+    } else {
+      navigate("/login");
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +35,7 @@ function Donate() {
       day,
       year,
       cvv,
+      money,
     };
 
     console.log("POST: ", donateData);
@@ -31,15 +44,11 @@ function Donate() {
       if (cardNumber !== "" && cvv !== "") {
         await axios.post("/donate", donateData).then((res) => {
           console.log(res.data);
-          setCardOwner("");
-          setCardNumber("");
-          setDay("");
-          setYear("");
-          setCVV("");
+
           navigate("/donatestatus");
           setTimeout(() => {
             alert("Payment Successfull");
-          }, 5000);
+          }, 2000);
         });
       } else {
         setError("Error! Please check your card details!");
@@ -72,7 +81,7 @@ function Donate() {
           <h2 className=" py-1 ">Donate us</h2>
         </div>
         <div
-          className="donate-card card bg-warning  "
+          className="donate-card card bg-warning py-2 "
           style={{
             width: "35rem",
             borderBottomLeftRadius: "50px",
@@ -82,22 +91,7 @@ function Donate() {
             marginTop: "30px",
           }}
         >
-          <h5 className="text-center py-2 ">Fill Your Card Details Here</h5>
-          {/* <div
-            className="card"
-            style={{
-              width: "24rem",
-              margin: "0 auto",
-              padding: "5px",
-              marginTop: "10px",
-            }}
-          >
-            <p>Please! Pay through card</p>
-            <button className="btn btn-primary">
-              <i class=" fa fa-credit-card"></i>
-              <t></t> Credit/Debit Card
-            </button>
-          </div> */}
+          <h4 className="text-center ">Fill Your Card Details Here</h4>
 
           <form className="p-3" method="POST" onSubmit={handleSubmit}>
             <div class="form-group">
@@ -109,7 +103,7 @@ function Donate() {
                 class="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
-                placeholder="Mohit"
+                placeholder="Mohit..."
                 value={cardOwner}
                 onChange={(e) => setCardOwner(e.target.value)}
               />
@@ -122,7 +116,7 @@ function Donate() {
                 type="text"
                 class="form-control"
                 id="exampleInputPassword1"
-                placeholder="123456789456"
+                placeholder="123456789456..."
                 value={cardNumber}
                 onChange={(e) => setCardNumber(e.target.value)}
               />
@@ -165,7 +159,26 @@ function Donate() {
                 />
               </div>
             </div>
-            <button type="submit" class="btn btn-primary mt-3 w-100">
+            <div class="form-group my-3">
+              <label for="exampleInputEmail1">
+                <h6>Add Money to be Donated</h6>
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Enter Amount..."
+                value={money}
+                onChange={(e) => setMoney(e.target.value)}
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary  mt-1 w-100"
+              onClick={DonateStatus}
+            >
               Donate Now
             </button>
           </form>

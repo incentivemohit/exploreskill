@@ -15,6 +15,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import AdminPanelSidebar from "../AdminPanelSidebar/AdminPanelSidebar";
 import axios from "axios";
+
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -63,12 +64,11 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function NewPost() {
-  const [title, setTitle] = useState("");
-  const [Category, setCategory] = useState("");
-  const [file, setFile] = useState();
-  const [Filename, setFilename] = useState("");
-  const [description, setDescription] = useState("");
-  const [GetCategory, setGetCategory] = useState([]);
+  const [Seller, setSeller] = useState("");
+  const [ProductName, setProductName] = useState("");
+  const [ProductPrice, setProductPrice] = useState("");
+  const [image, setImage] = useState("");
+  const [fileName, setFileName] = useState("");
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -81,38 +81,46 @@ export default function NewPost() {
     setOpen(false);
   };
 
+  // useEffect(() => {
+  //   loadCategory();
+  // });
+
+  // const loadCategory = async () => {
+  //   await axios.get("/addnewCategory").then((res) => {
+  //     setGetCategory(res.data);
+  //   });
+  // };
+
   const saveFile = (e) => {
-    setFile(e.target.files[0]);
-    setFilename(e.target.files[0].name);
+    setImage(e.target.files[0]);
+    setFileName(e.target.files[0].name);
   };
 
-  useEffect(() => {
-    loadCategory();
-  });
-
-  const loadCategory = async () => {
-    await axios.get("/addnewCategory").then((res) => {
-      setGetCategory(res.data);
-    });
-  };
   const onSubmit = async (e) => {
     e.preventDefault();
 
     const PostData = new FormData();
-
-    PostData.append("title", title);
-    PostData.append("Category", Category);
-    PostData.append("newpostpicture", file);
-    PostData.append("filename", Filename);
-    PostData.append("description", description);
+    PostData.append("Seller", Seller);
+    PostData.append("ProductName", ProductName);
+    PostData.append("ProductPrice", ProductPrice);
+    PostData.append("file", image);
+    PostData.append("filename", fileName);
 
     console.log("POST: ", PostData);
 
-    await axios.post("/newpost", PostData).then((res) => {
-      alert("Post Published");
-      setTitle("");
-      setDescription("");
-    });
+    await axios
+      .post("/newpost", PostData)
+      .then((res) => {
+        setSeller("");
+        setProductName("");
+        setProductPrice("");
+        setTimeout(() => {
+          alert("Post Successfully Published");
+        }, 3000);
+      })
+      .catch(() => {
+        alert("Something Gone Wrong!!");
+      });
   };
 
   return (
@@ -131,7 +139,12 @@ export default function NewPost() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              BlogMaker
+              <button
+                className="bg-dark text-white btn-outline-warning"
+                style={{ width: "200px" }}
+              >
+                Admin Panel
+              </button>
             </Typography>
           </Toolbar>
         </AppBar>
@@ -163,76 +176,62 @@ export default function NewPost() {
         <Main open={open}>
           <DrawerHeader />
           <Typography paragraph>
-            <div className="newpost-body">
-              <div className="newpost-wrapper card">
-                <form action="" className="newpost-form" onSubmit={onSubmit}>
-                  <div className="newpost-header">
-                    <div className="newpost-title">
-                      <div className="newpost-title-label">Product Title</div>
-                      <div className="newpost-input-div">
-                        <input
-                          className="newpost-input"
-                          type="text"
-                          value={title}
-                          name="title"
-                          onChange={(e) => setTitle(e.target.value)}
-                        />
-
-                        <div className="newpost-picture">
-                          <h4 className="newpost-picture-title">Add Images</h4>
-                          <input
-                            type="file"
-                            className="newpost-picture-input"
-                            name="newpostpicture"
-                            accept="newpostpicture/*"
-                            onChange={saveFile}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="newpost-leftside">
-                      <div className="newpost-publish-button">
-                        <button
-                          type="submit"
-                          className="btn btn-primary newpost-submit-button"
-                        >
-                          Publish
-                        </button>
-                      </div>
-                      <div className="newpost-category-div">
-                        <select
-                          className="newpost-category"
-                          value={Category}
-                          name="Category"
-                          onChange={(e) => setCategory(e.target.value)}
-                        >
-                          <option>Select</option>
-                          {GetCategory.map((data) => (
-                            <option value={data.categories}>
-                              {data.categories}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="newpost-description">
-                    <div className="newpost-description-title">
-                      Post Description
-                    </div>
-                    <textarea
-                      name="description"
-                      id=""
-                      cols="106"
-                      rows="15"
-                      onChange={(e) => setDescription(e.target.value)}
-                      value={description}
-                    ></textarea>
-                  </div>
-                </form>
+            <form
+              onSubmit={onSubmit}
+              method="POST"
+              className="w-50 m-auto my-5 card p-4"
+            >
+              <p className="m-auto h4">New Post</p>
+              <div class="form-group">
+                <label for="exampleInputEmail1"> Seller Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter seller name..."
+                  value={Seller}
+                  onChange={(e) => setSeller(e.target.value)}
+                />
               </div>
-            </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Product Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  placeholder="Enter product name..."
+                  value={ProductName}
+                  onChange={(e) => setProductName(e.target.value)}
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Product Price</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  placeholder="Enter price..."
+                  value={ProductPrice}
+                  onChange={(e) => setProductPrice(e.target.value)}
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">Add Product Image</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  onClick={saveFile}
+                  name="file"
+                />
+              </div>
+
+              <button type="submit" class="btn btn-primary">
+                Submit
+              </button>
+            </form>
           </Typography>
         </Main>
       </Box>

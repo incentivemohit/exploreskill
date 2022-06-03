@@ -1,16 +1,82 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import "./Payment.css";
 import lady from "../images/womenImages/w4.jpg";
-
+import { Alert } from "react-bootstrap";
 import productVideo from "../videos/pot.mp4";
 import sellerVideo from "../videos/pros.mp4";
 import Footer from "../Footer/Footer";
 import LoginHeader from "../Header/LoginHeader";
+import { async } from "@firebase/util";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../Context/UserAuthContext";
 
 function Payment() {
+  const [Country, setCountry] = useState("");
+  const [FirstName, setFirstName] = useState("");
+  const [LastName, setLastName] = useState("");
+  const [City, setCity] = useState("");
+  const [State, setState] = useState("");
+  const [PostalCode, setPostalCode] = useState("");
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+  const { user } = useContext(UserContext);
+
+  const handleAddressForm = async (e) => {
+    e.preventDefault();
+
+    const addressData = {
+      Country,
+      FirstName,
+      LastName,
+      City,
+      State,
+      PostalCode,
+    };
+
+    console.log("POST: ", addressData);
+
+    try {
+      if (
+        Country !== "" &&
+        FirstName !== "" &&
+        LastName !== "" &&
+        PostalCode !== "" &&
+        City !== ""
+      ) {
+        await axios.post("/sendaddress", addressData).then((res) => {
+          console.log(res.data);
+
+          if (user) {
+            navigate("/dashboard/paymentstatus");
+          } else {
+            navigate("/login");
+          }
+
+          setTimeout(() => {
+            alert("  Payment Successfully Completed");
+          }, 1000);
+        });
+      } else {
+        setError("Error! Please check your  details!");
+        setTimeout(() => {
+          setError("");
+        }, 5000);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   return (
     <>
       <div className="payment">
+        {error && (
+          <Alert variant="danger" className="text-center">
+            {error}
+          </Alert>
+        )}
         <LoginHeader />
         <h3 className="text-center bg-success text-white">
           Complete Your Transaction
@@ -51,7 +117,7 @@ function Payment() {
             <h2>Shipping Address</h2>
 
             <div className="shipping-card card p-5 m-3">
-              <form>
+              <form method="POST" onSubmit={handleAddressForm}>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label ">
                     Country
@@ -61,6 +127,8 @@ function Payment() {
                     class="form-control"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
+                    value={Country}
+                    onChange={(e) => setCountry(e.target.value)}
                   />
                 </div>
                 <div class="mb-3">
@@ -71,6 +139,8 @@ function Payment() {
                     type="text"
                     class="form-control"
                     id="exampleInputPassword1"
+                    value={FirstName}
+                    onChange={(e) => setFirstName(e.target.value)}
                   />
                 </div>
 
@@ -82,6 +152,8 @@ function Payment() {
                     type="text"
                     class="form-control"
                     id="exampleInputPassword1"
+                    value={LastName}
+                    onChange={(e) => setLastName(e.target.value)}
                   />
                 </div>
                 <div class="mb-3">
@@ -92,6 +164,8 @@ function Payment() {
                     type="text"
                     class="form-control"
                     id="exampleInputPassword1"
+                    value={City}
+                    onChange={(e) => setCity(e.target.value)}
                   />
                 </div>
                 <div class="mb-3">
@@ -102,6 +176,8 @@ function Payment() {
                     type="text"
                     class="form-control"
                     id="exampleInputPassword1"
+                    value={State}
+                    onChange={(e) => setState(e.target.value)}
                   />
                 </div>
                 <div class="mb-3">
@@ -112,16 +188,13 @@ function Payment() {
                     type="text"
                     class="form-control"
                     id="exampleInputPassword1"
+                    value={PostalCode}
+                    onChange={(e) => setPostalCode(e.target.value)}
                   />
                 </div>
 
                 <button type="submit" class="btn btn-primary w-75">
-                  <a
-                    href="/paymentstatus"
-                    className="text-decoration-none text-white"
-                  >
-                    Place Order
-                  </a>
+                  Place Order
                 </button>
               </form>
             </div>

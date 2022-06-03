@@ -2,30 +2,29 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const memberSchema = new Schema({
-  cardOwner: {
+  country: {
     type: String,
     required: true,
   },
-  cardNumber: {
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  state: {
     type: Number,
     required: true,
-    max: "16",
   },
-  day: {
-    type: String,
-    required: true,
-  },
-  year: {
-    type: Number,
-    required: true,
-  },
-  cvv: {
-    type: String,
-    required: true,
-  },
-  donateMoney: {
+  postalCode: {
     type: String,
   },
 });
 
-module.exports = mongoose.model("donate", memberSchema);
+module.exports = mongoose.model("shippingAddress", memberSchema);

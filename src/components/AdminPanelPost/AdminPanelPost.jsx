@@ -1,31 +1,32 @@
 import React, { useState, useEffect } from "react";
 import "./AdminPanelPost.css";
 import { Link } from "react-router-dom";
-
 import axios from "axios";
+
 export default function AdminPanelPost() {
   const [GetData, setData] = useState([]);
 
   useEffect(() => {
-    get();
+    getPosts();
   }, []);
 
-  const get = async () => {
-    await axios.get("/getadminposts").then((res) => {
-      if (res.data.msg) {
-        alert(res.data.msg);
-      } else {
-        console.log(res);
+  const getPosts = async () => {
+    await axios
+      .get("/getposts")
+      .then((res) => {
+        console.log(res.data);
         setData(res.data);
-      }
-    });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   const deletePost = async (Postid) => {
     await axios
       .post(`/adminpost/${Postid}`)
-      .then((result) => {
-        get();
+      .then(() => {
+        getPosts();
       })
       .catch(() => {
         alert("Error in the Code");
@@ -46,7 +47,9 @@ export default function AdminPanelPost() {
               />
             </div>
             <div className="adminpanel-post-content">
-              <div className="adminpanel-post-title">{data.post_title}</div>
+              <div className="adminpanel-post-title">{data.sellerName}</div>
+              <div className="adminpanel-post-title">{data.productName}</div>
+              <div className="adminpanel-post-title">{data.productPrice}</div>
             </div>
             <div className="adminpanel-post-links">
               <ul className="adminpanel-post-ul">

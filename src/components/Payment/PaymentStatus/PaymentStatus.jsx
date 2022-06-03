@@ -26,11 +26,12 @@ function PaymentStatus() {
           <p>Dec 28th,2022</p>
         </div>
 
-        <button className="btn btn-success w-25 ">
-          <a href="/products" className="text-decoration-none text-white">
-            Shop Again
-          </a>
-        </button>
+        <a
+          href="/dashboard/products"
+          className="text-decoration-none text-white"
+        >
+          <button className="btn btn-success w-25 ">Shop Again</button>{" "}
+        </a>
       </div>
     </>
   );

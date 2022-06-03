@@ -129,7 +129,12 @@ export default function AdminPostEdit() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              BlogMaker
+              <button
+                className="bg-dark text-white btn-outline-warning"
+                style={{ width: "200px" }}
+              >
+                Admin Panel
+              </button>
             </Typography>
           </Toolbar>
         </AppBar>

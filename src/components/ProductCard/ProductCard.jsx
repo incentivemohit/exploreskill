@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import "./ProductCard.css";
 
-import img1 from "../images/img5.jpg";
 import { Rating } from "react-simple-star-rating";
 import DialogBox from "../ProductList/DialogBox";
 import { UserContext } from "../Context/UserAuthContext";
@@ -11,13 +10,11 @@ function ProductCard(props) {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const handleRoute = (e) => {
-    e.preventDefault();
-
+  const handleAction = () => {
     if (!user) {
       navigate("/login");
     } else {
-      navigate("/payment");
+      navigate("/dashboard/payment");
     }
   };
   return (
@@ -42,14 +39,11 @@ function ProductCard(props) {
           </div>
         </div>
         <div className="text-center">
-          <button className="btn btn-warning buy-button">
-            <a
-              href="/payment"
-              className="text-decoration-none h5"
-              onClick={handleRoute}
-            >
-              Buy Now
-            </a>
+          {/* <a href="/dashboard/payment" className="text-decoration-none h5">
+         
+            </a> */}
+          <button className="btn btn-warning buy-button" onClick={handleAction}>
+            Get Now
           </button>
         </div>
       </div>
