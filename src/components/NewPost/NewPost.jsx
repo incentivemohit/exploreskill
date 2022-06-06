@@ -67,8 +67,9 @@ export default function NewPost() {
   const [Seller, setSeller] = useState("");
   const [ProductName, setProductName] = useState("");
   const [ProductPrice, setProductPrice] = useState("");
-  const [image, setImage] = useState("");
-  const [fileName, setFileName] = useState("");
+  const [description, setDescription] = useState("");
+  // const [image, setImage] = useState("");
+  // const [fileName, setFileName] = useState("");
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -91,20 +92,19 @@ export default function NewPost() {
   //   });
   // };
 
-  const saveFile = (e) => {
-    setImage(e.target.files[0]);
-    setFileName(e.target.files[0].name);
-  };
+  // const saveFile = (e) => {
+  //   setImage(e.target.files[0]);
+  //   setFileName(e.target.files[0].name);
+  // };
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     const PostData = new FormData();
-    PostData.append("Seller", Seller);
-    PostData.append("ProductName", ProductName);
-    PostData.append("ProductPrice", ProductPrice);
-    PostData.append("file", image);
-    PostData.append("filename", fileName);
+    PostData.append("sellerName", Seller);
+    PostData.append("productName", ProductName);
+    PostData.append("productPrice", ProductPrice);
+    PostData.append("proDescription", description);
 
     console.log("POST: ", PostData);
 
@@ -179,7 +179,7 @@ export default function NewPost() {
             <form
               onSubmit={onSubmit}
               method="POST"
-              className="w-50 m-auto my-5 card p-4"
+              className="w-50 m-auto my-4 card p-4"
             >
               <p className="m-auto h4">New Post</p>
               <div class="form-group">
@@ -216,8 +216,19 @@ export default function NewPost() {
                   onChange={(e) => setProductPrice(e.target.value)}
                 />
               </div>
-
               <div class="form-group">
+                <label for="exampleInputPassword1">Product Description</label>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  placeholder="Enter price..."
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
+
+              {/* <div class="form-group">
                 <label for="exampleInputPassword1">Add Product Image</label>
                 <input
                   type="file"
@@ -226,7 +237,7 @@ export default function NewPost() {
                   onClick={saveFile}
                   name="file"
                 />
-              </div>
+              </div> */}
 
               <button type="submit" class="btn btn-primary">
                 Submit

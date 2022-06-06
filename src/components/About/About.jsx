@@ -4,7 +4,6 @@ import "./About.css";
 import mk from "../images/developers/mkk.jpg";
 import shilpa from "../images/developers/shilpa.jpg";
 import sakshi from "../images/developers/sakshi.jpeg";
-import Navbar from "../Navbar/Navbar";
 
 function About() {
   return (

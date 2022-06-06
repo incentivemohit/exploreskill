@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import LoginHeader from "../Header/LoginHeader";
 import ty from "../images/thank.jpg";
 import { UserContext } from "../Context/UserAuthContext";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +9,14 @@ function ThankYou() {
 
   const GoToDashBoard = () => {
     if (user) {
-      navigate("/dashboard");
+      navigate("/adminlogin");
+    } else {
+      navigate("/login");
+    }
+  };
+  const GoToHomePage = () => {
+    if (user) {
+      navigate("/");
     } else {
       navigate("/login");
     }
@@ -28,11 +34,20 @@ function ThankYou() {
         }}
       >
         <div className="card  w-50 text-center m-auto bg-white  ">
-          <h3>Thank You for willing to join us !!</h3>
-          <h3>Out team will be contacting you soon.</h3>
+          <h3>Congratulations!! You are our new Seller</h3>
+          <h3>Start Your Journey With Us!!</h3>
         </div>
-        <button className="btn btn-primary w-25 mt-2" onClick={GoToDashBoard}>
-          Return to Home Page
+        <button
+          className="btn btn-warning  w-25 mt-2 pt-2 mx-1"
+          onClick={GoToDashBoard}
+        >
+          <h5> Go to Admin Panel</h5>
+        </button>
+        <button
+          className="btn btn-primary w-25 pt-2 mt-2"
+          onClick={GoToHomePage}
+        >
+          <h5> Return to Home Page</h5>
         </button>
       </div>
     </>

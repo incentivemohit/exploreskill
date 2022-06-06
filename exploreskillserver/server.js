@@ -16,8 +16,15 @@ app.use(
   })
 );
 
-let postData = require("./routes/post.route");
+const postData = require("./routes/post.route");
+const member = require("./routes/member.route");
+const address = require("./routes/shippingAddress.route");
+const donate = require("./routes/donate.route");
+
 app.use("/", postData);
+app.use("/", member);
+app.use("/", address);
+app.use("/", donate);
 
 app.use((req, res, next) => {
   res.status(404).send("Error 404!");

@@ -1,15 +1,25 @@
 import React from "react";
-import LoginHeader from "../../Header/LoginHeader";
+import { Link } from "react-router-dom";
 import tick from "../../images/successTick.jpg";
+import PaymentHeader from "../PaymentHeader";
 import "./PaymentStatus.css";
 
 function PaymentStatus() {
   return (
     <>
       <div className="payment-status-body text-center">
-        <LoginHeader />
-        <div className="container-fluid bg-danger p-1 text-white">
-          <h4 className="text-center">Payment Status</h4>
+        <PaymentHeader />
+        <div className="container-fluid nav navbar bg-danger p-1 text-white">
+          <div className="payment-status-title m-auto">
+            <h3 style={{ marginLeft: "190px" }}>Payment Status</h3>
+          </div>
+          <div className="print-details">
+            <Link to="/bill">
+              <button className="btn btn-warning mx-5">
+                Go to Order Details
+              </button>
+            </Link>
+          </div>
         </div>
 
         <div className="payment-status">
@@ -26,10 +36,7 @@ function PaymentStatus() {
           <p>Dec 28th,2022</p>
         </div>
 
-        <a
-          href="/dashboard/products"
-          className="text-decoration-none text-white"
-        >
+        <a href="/products" className="text-decoration-none text-white">
           <button className="btn btn-success w-25 ">Shop Again</button>{" "}
         </a>
       </div>

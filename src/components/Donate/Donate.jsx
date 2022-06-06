@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
-import LoginHeader from "../Header/LoginHeader";
 import img from "../images/donate.jpg";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/UserAuthContext";
+import Header from "../Header/Header";
+import PaymentHeader from "../Payment/PaymentHeader";
 
 function Donate() {
   const [cardOwner, setCardOwner] = useState("");
@@ -17,14 +18,6 @@ function Donate() {
 
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
-
-  const DonateStatus = () => {
-    if (user) {
-      navigate("/donatestatus");
-    } else {
-      navigate("/login");
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,20 +34,24 @@ function Donate() {
     console.log("POST: ", donateData);
 
     try {
-      if (cardNumber !== "" && cvv !== "") {
-        await axios.post("/donate", donateData).then((res) => {
-          console.log(res.data);
+      if (user) {
+        if (cardNumber !== "" && cvv !== "") {
+          await axios.post("/donate", donateData).then((res) => {
+            console.log(res.data);
 
-          navigate("/donatestatus");
+            navigate("/donatestatus");
+            setTimeout(() => {
+              alert("Payment Successfull");
+            }, 2000);
+          });
+        } else {
+          setError("Error! Please check your card details!");
           setTimeout(() => {
-            alert("Payment Successfull");
-          }, 2000);
-        });
+            setError("");
+          }, 5000);
+        }
       } else {
-        setError("Error! Please check your card details!");
-        setTimeout(() => {
-          setError("");
-        }, 5000);
+        navigate("/login");
       }
     } catch (err) {
       console.log(err.message);
@@ -63,6 +60,7 @@ function Donate() {
 
   return (
     <>
+      <PaymentHeader />
       <div
         className="donate-body"
         style={{
@@ -76,7 +74,7 @@ function Donate() {
             {error}
           </Alert>
         )}
-        <LoginHeader />
+
         <div className="container-fluid bg-dark text-white text-center">
           <h2 className=" py-1 ">Donate us</h2>
         </div>
@@ -174,11 +172,7 @@ function Donate() {
               />
             </div>
 
-            <button
-              type="submit"
-              class="btn btn-primary  mt-1 w-100"
-              onClick={DonateStatus}
-            >
+            <button type="submit" class="btn btn-primary  mt-1 w-100">
               Donate Now
             </button>
           </form>

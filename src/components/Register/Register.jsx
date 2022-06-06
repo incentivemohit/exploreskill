@@ -83,7 +83,11 @@ function Register() {
 
           <div className="register-bottom">
             <div className="register-submit-button">
-              <button type="submit" class="btn btn-primary  ">
+              <button
+                type="submit"
+                class="btn btn-warning  "
+                style={{ width: "150px" }}
+              >
                 Submit
               </button>
             </div>

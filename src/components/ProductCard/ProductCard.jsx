@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./ProductCard.css";
+import axios from "axios";
 
 import { Rating } from "react-simple-star-rating";
 import DialogBox from "../ProductList/DialogBox";
@@ -10,15 +11,34 @@ function ProductCard(props) {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
+  const [GetData, setData] = useState([]);
+
+  useEffect(() => {
+    getPosts();
+  }, [0]);
+
+  const getPosts = async () => {
+    await axios
+      .get("/getposts")
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   const handleAction = () => {
     if (!user) {
       navigate("/login");
     } else {
-      navigate("/dashboard/payment");
+      navigate("/payment");
     }
   };
   return (
     <>
+      {GetData.map((data) => {})}
       <div className="outer-card-body" style={{ width: "25rem" }}>
         <div className="product-card" style={{ width: "25rem" }}>
           <img src={props.image} alt="" width={400} height={270} />
@@ -39,10 +59,11 @@ function ProductCard(props) {
           </div>
         </div>
         <div className="text-center">
-          {/* <a href="/dashboard/payment" className="text-decoration-none h5">
-         
-            </a> */}
-          <button className="btn btn-warning buy-button" onClick={handleAction}>
+          <button
+            className="btn btn-info  buy-button"
+            style={{ fontSize: "18px" }}
+            onClick={handleAction}
+          >
             Get Now
           </button>
         </div>

@@ -4,7 +4,6 @@ import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ProductList from "./components/ProductList/ProductListBeforeLogin";
 import About from "./components/About/About";
 import SuperWomen from "./components/SuperWomen/SuperWomen";
 import Payment from "./components/Payment/Payment";
@@ -13,18 +12,16 @@ import Member from "./components/Member/Member";
 import ThankYou from "./components/Member/ThankYou";
 import Donate from "./components/Donate/Donate";
 import { UserContextProvider } from "./components/Context/UserAuthContext";
-import Dash from "./components/Home/Dash";
 import Admin from "./components/Admin/Admin";
 import NewPost from "./components/NewPost/NewPost";
 import AdminPanelPost from "./components/AdminPanelPost/AdminPanelPost";
-import Feedback from "react-bootstrap/esm/Feedback";
 import DonateStatus from "./components/Donate/DonateStatus";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
 import ProtectedRoutes from "./components/ProtectedRoutes";
-import ProductListBeforeLogin from "./components/ProductList/ProductListBeforeLogin";
-import ProductListAfterLogin from "./components/ProductList/ProductListAfterLogin";
-import AboutAfterLogin from "./components/About/AboutAfterLogin";
-import SuperWomenAfterLogin from "./components/SuperWomen/SuperWomenAfterLogin";
+import ProductList from "./components/ProductList/ProductList";
+import Contact from "./components/Contact/Contact";
+import Bill from "./components/Bill/Bill";
+import AdminLogin from "./components/Member/AdminLogin";
 
 function App() {
   return (
@@ -32,11 +29,47 @@ function App() {
       <UserContextProvider>
         <Router>
           <Routes>
-            <Route path="/feedback" element={<Feedback />} />
-            <Route path="/adminpanelpost" element={<AdminPanelPost />} />
-            <Route path="/adminpanel" element={<AdminPanel />} />
-            <Route path="/newpost" element={<NewPost />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/adminlogin" element={<AdminLogin />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/products" element={<ProductList />} />
+            <Route path="/superwomen" element={<SuperWomen />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/bill" element={<Bill />} />
+            <Route
+              path="/adminpanelpost"
+              element={
+                <ProtectedRoutes>
+                  <AdminPanelPost />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/adminpanel"
+              element={
+                <ProtectedRoutes>
+                  <AdminPanel />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/newpost"
+              element={
+                <ProtectedRoutes>
+                  <NewPost />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoutes>
+                  <Admin />
+                </ProtectedRoutes>
+              }
+            />
             <Route
               path="/donatestatus"
               element={
@@ -47,7 +80,7 @@ function App() {
             />
 
             <Route
-              path="/dashboard/donate"
+              path="/donate"
               element={
                 <ProtectedRoutes>
                   <Donate />
@@ -56,7 +89,7 @@ function App() {
             />
 
             <Route
-              path="/dashboard/thankyou"
+              path="/thankyou"
               element={
                 <ProtectedRoutes>
                   <ThankYou />
@@ -65,7 +98,7 @@ function App() {
             />
 
             <Route
-              path="/dashboard/membership"
+              path="/membership"
               element={
                 <ProtectedRoutes>
                   <Member />
@@ -74,7 +107,7 @@ function App() {
             />
 
             <Route
-              path="/dashboard/payment"
+              path="/payment"
               element={
                 <ProtectedRoutes>
                   <Payment />
@@ -82,53 +115,13 @@ function App() {
               }
             />
             <Route
-              path="/dashboard/paymentstatus"
+              path="/paymentstatus"
               element={
                 <ProtectedRoutes>
                   <PaymentStatus />
                 </ProtectedRoutes>
               }
             />
-
-            <Route
-              path="/dashboard/about"
-              element={
-                <ProtectedRoutes>
-                  <AboutAfterLogin />
-                </ProtectedRoutes>
-              }
-            />
-
-            <Route
-              path="/dashboard/superwomen"
-              element={<SuperWomenAfterLogin />}
-            />
-
-            <Route
-              path="/dashboard/products"
-              element={
-                <ProtectedRoutes>
-                  <ProductListAfterLogin />
-                </ProtectedRoutes>
-              }
-            />
-
-            <Route
-              exact
-              path="/dashboard"
-              element={
-                <ProtectedRoutes>
-                  <Dash />
-                </ProtectedRoutes>
-              }
-            />
-
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/products" element={<ProductListBeforeLogin />} />
-            <Route path="/superwomen" element={<SuperWomen />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/" element={<Home />} />
           </Routes>
         </Router>
       </UserContextProvider>

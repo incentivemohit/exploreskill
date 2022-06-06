@@ -1,12 +1,7 @@
 const Post = require("../models/post.model");
 
 exports.newpost = (req, res) => {
-  const data = new Post({
-    sellerName: req.body.Seller,
-    productName: req.body.ProductName,
-    productPrice: req.body.ProductPrice,
-    productImage: req.file.filename,
-  });
+  const data = new Post(req.body);
 
   try {
     data.save();
@@ -19,7 +14,7 @@ exports.newpost = (req, res) => {
 exports.getposts = (req, res) => {
   Post.find((error, data) => {
     if (error) {
-      return next(error);
+      return error;
     } else {
       res.json(data);
     }

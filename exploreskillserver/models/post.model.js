@@ -15,9 +15,9 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
-  productImage: {
-    data: Buffer,
-    contentType: String,
+  proDescription: {
+    type: String,
+    required: true,
   },
 });
 

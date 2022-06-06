@@ -30,7 +30,7 @@ export default function AdminPanelSidebar() {
           class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
         >
           {/* <img src={email.profile} alt="" className="admin-profile" /> */}
-          <span class="fs-4 dashboard">Mohit kumar</span>
+          <span class="fs-4 dashboard">mohit597</span>
         </Link>
         <hr />
         <ul class="nav nav-pills flex-column mb-auto">
@@ -66,7 +66,7 @@ export default function AdminPanelSidebar() {
           </li> */}
 
           <li>
-            <Link to="/dashboard" class="nav-link text-white">
+            <Link to="/" class="nav-link text-white">
               <i class="fa fa-eye"></i>
               <span class="ms-2">
                 <button className="bg-dark text-white btn-outline-warning">

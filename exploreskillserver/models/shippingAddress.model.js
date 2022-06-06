@@ -19,7 +19,7 @@ const memberSchema = new Schema({
     required: true,
   },
   state: {
-    type: Number,
+    type: String,
     required: true,
   },
   postalCode: {

@@ -1,102 +1,45 @@
 import React, { useContext } from "react";
 import "./Header.css";
 import img1 from "../images/aurat.png";
+import Navbar from "../Navbar/Navbar";
 import { UserContext } from "../Context/UserAuthContext";
-import { useNavigate } from "react-router-dom";
-
 function LoginHeader() {
-  const { logOut } = useContext(UserContext);
-  const navigate = useNavigate();
-
-  const handleLogOut = async (e) => {
-    e.preventDefault();
-
-    try {
-      await logOut();
-      navigate("/");
-    } catch (err) {
-      alert(err.message);
-    }
-  };
+  const { user } = useContext(UserContext);
 
   return (
     <>
-      <div className="container-fluid topBar">
-        <div className="topBar-left ">
-          <ul className="topLeft-ul ">
-            <li className="topLeft-links">
-              <a href="/dashboard" className="text-decoration-none text-white">
-                Home
+      <header class="py-2 border-bottom  text-white ">
+        <div class="container d-flex flex-wrap justify-content-center px-4 bg-warning ">
+          <a
+            href="/"
+            class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none"
+          >
+            <img
+              src={img1}
+              alt=""
+              className="rounded-circle"
+              width={90}
+              height={60}
+            />
+            <span class="fs-4 px-2">
+              <a href="/" className="text-decoration-none">
+                <h2 className="text-dark ">HomeyCrafts</h2>
               </a>
-            </li>
-            <li className="topLeft-links">
-              <a
-                href="/dashboard/products"
-                className="text-decoration-none text-white"
-              >
-                Products
-              </a>
-            </li>
-            <li className="topLeft-links">
-              <a
-                href="/dashboard/superwomen"
-                className="text-decoration-none text-white"
-              >
-                Super Women
-              </a>
-            </li>
-            <li className="topLeft-links">
-              <a
-                href="/dashboard/about"
-                className="text-decoration-none text-white"
-              >
-                About
-              </a>
-            </li>
-          </ul>
-        </div>
+            </span>
+          </a>
 
-        <div className="topBar-center">
-          <div className="logo">
-            <a href="/">
-              <img
-                src={img1}
-                alt=""
-                className="rounded-circle"
-                style={{
-                  width: "70px",
-                  height: "50px",
-                }}
-              />
-            </a>
-          </div>
-          <div className="site-name">
-            <a href="/dashboard" className="text-decoration-none text-white ">
-              ExploreSkills
-            </a>
-          </div>
+          <form class="col-12 col-lg-auto mb-2 mt-2 mb-lg-0">
+            <input
+              type="search"
+              class="form-control"
+              style={{ width: "350px" }}
+              placeholder="Search..."
+              aria-label="Search"
+            />
+          </form>
         </div>
-
-        <div className="topRight ">
-          <ul className="topRight-ul">
-            <li className="topRight-links">
-              <a
-                href="/dashboard/donate"
-                className="text-decoration-none text-white "
-              >
-                <button className="btn btn-info text-white">Donate</button>
-              </a>
-            </li>
-            <li className="topRight-links">
-              <a href="/login">
-                <button className="btn btn-success" onClick={handleLogOut}>
-                  Logout
-                </button>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      </header>
+      <Navbar />
     </>
   );
 }

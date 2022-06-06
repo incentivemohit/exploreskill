@@ -6,6 +6,8 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../Firebase/Firebase";
 
@@ -35,13 +37,26 @@ export const UserContextProvider = ({ children }) => {
     signOut(auth);
   }
 
+  function signInWithGoogle() {
+    const googleProvider = new GoogleAuthProvider();
+
+    return signInWithPopup(auth, googleProvider);
+  }
+
   function forgetPassword(email) {
     return sendPasswordResetEmail(auth, email);
   }
 
   return (
     <UserContext.Provider
-      value={{ user, register, login, logOut, forgetPassword }}
+      value={{
+        user,
+        register,
+        login,
+        logOut,
+        forgetPassword,
+        signInWithGoogle,
+      }}
     >
       {children}
     </UserContext.Provider>

@@ -9,6 +9,7 @@ import WomenCard from "../Women/WomenCard";
 import Footer from "../Footer/Footer";
 import { UserContext } from "../Context/UserAuthContext";
 import { useNavigate } from "react-router-dom";
+import LoginHeader from "../Header/LoginHeader";
 
 function SuperWomen() {
   const { user } = useContext(UserContext);
@@ -16,25 +17,25 @@ function SuperWomen() {
 
   const CreateMember = () => {
     if (user) {
-      navigate("/dashboard/membership");
+      navigate("/membership");
     } else {
       navigate("/login");
     }
   };
   return (
     <>
-      <div className="superwomen">
-        <Header />
+      <LoginHeader />
 
-        <div className="top-heading">
+      <div className="superwomen ">
+        <div className="top-heading pt-3">
           <div className="top-left">
             <h2>
               <b className="text-light">Some of our Super Women</b>
             </h2>
           </div>
           <div className="top-right">
-            <button className="btn btn-warning" onClick={CreateMember}>
-              Be a part of ExploreSkills
+            <button className="btn btn-success" onClick={CreateMember}>
+              Be a part of HomeyCrafts
             </button>
           </div>
         </div>

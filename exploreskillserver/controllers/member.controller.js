@@ -10,3 +10,5 @@ exports.member = (req, res) => {
     res.status(409).json({ message: err.message });
   }
 };
+
+exports.adminLogin = (req, res) => {};

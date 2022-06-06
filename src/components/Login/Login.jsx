@@ -3,12 +3,14 @@ import { Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/UserAuthContext";
 import "./Login.css";
+import GoogleButton from "react-google-button";
+import { async } from "@firebase/util";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { login, forgetPassword } = useContext(UserContext);
+  const { login, forgetPassword, signInWithGoogle } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -16,7 +18,7 @@ function Login() {
     try {
       const member = await login(email, password);
       if (member) {
-        navigate("/dashboard");
+        navigate("/");
       } else {
         navigate("/register");
       }
@@ -28,6 +30,21 @@ function Login() {
   const forgetPasswordHandler = (event) => {
     const email = event.target.email;
     if (email) forgetPassword(email).then(() => (event.target.email = ""));
+  };
+
+  const handleGoogle = async (e) => {
+    e.preventDefault();
+
+    try {
+      const google = await signInWithGoogle();
+      if (google) {
+        navigate("/");
+      } else {
+        navigate("/login");
+      }
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
@@ -54,8 +71,12 @@ function Login() {
               <label className="label-title">Password</label>
             </div>
             <div className="pass2">
-              <h6 className="text-white" style={{ marginLeft: "330px" }}>
-                <a href="" onClick={forgetPasswordHandler}>
+              <h6 className="text-white" style={{ marginLeft: "300px" }}>
+                <a
+                  href=""
+                  className="label-title"
+                  onClick={forgetPasswordHandler}
+                >
                   forget Password?
                 </a>
               </h6>
@@ -74,7 +95,11 @@ function Login() {
 
         <div className="login-bottom">
           <div className="login-submit-button">
-            <button type="submit" class="btn btn-primary ">
+            <button
+              type="submit"
+              class="btn btn-warning "
+              style={{ width: "150px" }}
+            >
               Submit
             </button>
           </div>
@@ -87,6 +112,11 @@ function Login() {
             </p>
           </div>
         </div>
+        <GoogleButton
+          className="w-100 g-btn"
+          type="dark"
+          onClick={handleGoogle}
+        ></GoogleButton>
       </form>
     </div>
   );

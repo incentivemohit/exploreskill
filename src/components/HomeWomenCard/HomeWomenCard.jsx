@@ -1,6 +1,5 @@
 import React from "react";
 import "./HomeWomenCard.css";
-import lady from "../images/img3.jpg";
 
 function HomeWomenCard(props) {
   return (

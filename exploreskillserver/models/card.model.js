@@ -9,7 +9,6 @@ const memberSchema = new Schema({
   cardNumber: {
     type: Number,
     required: true,
-    max: "16",
   },
   day: {
     type: String,

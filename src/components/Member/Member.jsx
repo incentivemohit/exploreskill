@@ -3,13 +3,17 @@ import "./Member.css";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import LoginHeader from "../Header/LoginHeader";
 import { UserContext } from "../Context/UserAuthContext";
+import PaymentHeader from "../Payment/PaymentHeader";
 
 function Member() {
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const [phoneNo, setPhoneNo] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
@@ -23,7 +27,9 @@ function Member() {
     const memberData = {
       firstName,
       lastName,
+      userName,
       email,
+      password,
       phoneNo,
       description,
     };
@@ -35,13 +41,14 @@ function Member() {
         firstName !== "" &&
         lastName !== "" &&
         email !== "" &&
-        phoneNo !== ""
+        phoneNo !== "" &&
+        password === confirmPassword
       ) {
         await axios.post("/member", memberData).then((res) => {
           console.log(res.data);
 
           if (user) {
-            navigate("/dashboard/thankyou");
+            navigate("/thankyou");
           } else {
             navigate("/login");
           }
@@ -68,14 +75,14 @@ function Member() {
           {error}
         </Alert>
       )}
-      <LoginHeader />
+      <PaymentHeader />
       <div className="member-body">
         <h3 className="mx-5 text-white py-3 ">
-          Fill this to be a part of ExploreSkills
+          Fill this to be a part of HomeyCrafts
         </h3>
 
         <div
-          className="form card p-5  mx-5 bg-warning"
+          className="form card p-4  mx-5 bg-warning"
           style={{ width: "40rem" }}
         >
           <form
@@ -110,6 +117,19 @@ function Member() {
                 />
               </div>
             </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Username..."
+                name="name"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+              />
+            </div>
             <div class="form-group">
               <input
                 type="email"
@@ -120,6 +140,30 @@ function Member() {
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Password..."
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Confirm Password..."
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
             <div class="form-group">
@@ -135,10 +179,10 @@ function Member() {
             </div>
             <div class="form-group">
               <textarea
-                className="px-2"
+                className="px-2 "
                 name="description"
                 id=""
-                cols="70"
+                cols="75"
                 rows="5"
                 placeholder="Write about yourself here..."
                 value={description}
@@ -159,6 +203,9 @@ function Member() {
 
             <button type="submit" class="btn btn-primary w-100">
               Join Us
+            </button>
+            <button type="submit" class="btn btn-primary w-100 mt-1">
+              Already Join? Go to Admin Panel
             </button>
           </form>
         </div>

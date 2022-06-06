@@ -1,6 +1,6 @@
 import * as React from "react";
-import dashboardHeader from "../Header/LoginHeader";
-import { Link, useParams } from "react-router-dom";
+
+import { useParams } from "react-router-dom";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -18,7 +18,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import AdminPanelPost from "../AdminPanelPost/AdminPanelPost";
 import AdminPanelSidebar from "../AdminPanelSidebar/AdminPanelSidebar";
 import "./AdminPanel.css";
-import LoginHeader from "../Header/LoginHeader";
+
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(

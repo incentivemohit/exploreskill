@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import Content from "../Content/Content";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
@@ -11,8 +11,7 @@ import lady5 from "../images/womenImages/w1.jpg";
 import HomeWomenCard from "../HomeWomenCard/HomeWomenCard";
 import "./Home.css";
 import FooterCarousel from "./FooterCarousel";
-import HomeCarousel from "./HomeCarousel";
-import Navbar from "../Navbar/Navbar";
+import LoginHeader from "../Header/LoginHeader";
 
 function Home() {
   return (

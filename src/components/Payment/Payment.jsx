@@ -5,11 +5,12 @@ import { Alert } from "react-bootstrap";
 import productVideo from "../videos/pot.mp4";
 import sellerVideo from "../videos/pros.mp4";
 import Footer from "../Footer/Footer";
-import LoginHeader from "../Header/LoginHeader";
 import { async } from "@firebase/util";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/UserAuthContext";
+import Header from "../Header/Header";
+import PaymentHeader from "./PaymentHeader";
 
 function Payment() {
   const [Country, setCountry] = useState("");
@@ -49,7 +50,7 @@ function Payment() {
           console.log(res.data);
 
           if (user) {
-            navigate("/dashboard/paymentstatus");
+            navigate("/paymentstatus");
           } else {
             navigate("/login");
           }
@@ -77,7 +78,7 @@ function Payment() {
             {error}
           </Alert>
         )}
-        <LoginHeader />
+        <PaymentHeader />
         <h3 className="text-center bg-success text-white">
           Complete Your Transaction
         </h3>
@@ -207,9 +208,9 @@ function Payment() {
               <h4>Delivery Charge : Rs.20</h4>
               <h6>Total Cost : Rs.520</h6>
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Inventore, quod? Nisi, natus. Excepturi, voluptatum! Nemo iusto
-                molestias quos? Repellendus, quis.
+                I am 57 years old and a part of ExploreSkills since 4 years.In
+                Bihar Mithila painting posters are one of the major part of
+                weddin occasions .My products are been sold outside india too.
               </p>
             </div>
 
